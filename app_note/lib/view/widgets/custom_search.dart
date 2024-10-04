@@ -13,7 +13,7 @@ class CustomSearch extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.07),
           borderRadius: BorderRadius.circular(16)),
-      child: Center(child: Icon(Icons.search)),
+      child: const Center(child: Icon(Icons.search)),
     );
   }
 }
