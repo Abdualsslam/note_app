@@ -1,4 +1,4 @@
-import 'package:app_note/cubits/cubit/add_note_cubit.dart';
+import 'package:app_note/cubits/add_notes/add_note_cubit.dart';
 import 'package:app_note/view/widgets/add_note_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
