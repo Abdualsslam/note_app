@@ -59,6 +59,17 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         date: DateTime.now().toString(),
                         color: Colors.blue.value);
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                    // try {
+                    //   var box = Hive.box<NoteModel>(kNotesBox); // افتح الصندوق
+                    //   for (int i = 0; i < box.length; i++) {
+                    //     var note = box.getAt(i); // استعرض البيانات
+                    //     print(
+                    //         "Note $i: ${note?.title}, ${note?.subTitle}, ${note?.date}, ${note?.color}");
+                    //   }
+                    // } catch (e) {
+                    //   print("Error fetching notes: $e");
+                    // }
+                    debugPrint("add ******");
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                   }
