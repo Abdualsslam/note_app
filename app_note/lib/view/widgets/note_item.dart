@@ -1,9 +1,11 @@
+import 'package:app_note/models/note_model.dart';
 import 'package:app_note/view/edit_note_view.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
-
+  NoteItem({super.key, required this.note});
+  NoteModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -24,13 +26,13 @@ class NoteItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title: const Text(
-                'Flutter Tips',
-                style: TextStyle(color: Colors.black),
+              title: Text(
+                note.title,
+                style: const TextStyle(color: Colors.black),
               ),
-              subtitle: const Text(
-                ' asfadfasdfasdf asdfasdfasdfasd sdfasfasfsad asdfssfsdfasf sdfasfasdf asdfsadfsdf asdfsadfasf',
-                style: TextStyle(color: Colors.black54),
+              subtitle: Text(
+                note.subTitle,
+                style: const TextStyle(color: Colors.black54),
               ),
               trailing: IconButton(
                   onPressed: () {},
@@ -40,9 +42,9 @@ class NoteItem extends StatelessWidget {
                     color: Colors.black,
                   )),
             ),
-            const Text(
-              'Flutter Tips',
-              style: TextStyle(color: Colors.black),
+            Text(
+              note.date,
+              style: const TextStyle(color: Colors.black),
             ),
           ],
         ),

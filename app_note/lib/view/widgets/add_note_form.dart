@@ -56,8 +56,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     var noteModel = NoteModel(
                         title: title!,
                         subTitle: subTitle!,
-                        date: DateTime.now().toString(),
-                        color: Colors.blue.value);
+                        date: DateTime.now().year.toString(),
+                        color: Colors.blue.g.toInt());
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                     // try {
                     //   var box = Hive.box<NoteModel>(kNotesBox); // افتح الصندوق
