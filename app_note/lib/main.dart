@@ -1,4 +1,5 @@
 import 'package:app_note/constans.dart';
+import 'package:app_note/cubits/read_notes/notes_cubit.dart';
 import 'package:app_note/models/note_model.dart';
 import 'package:app_note/simple_bloc_observer.dart';
 import 'package:app_note/view/notes_view.dart';
@@ -10,7 +11,8 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(kNotesBox);
-
+  // var noteBox = Hive.box<NoteModel>(kNotesBox);
+  // await noteBox.clear();
   Bloc.observer = MyBlocObserver();
   runApp(const NotesApp());
 }
@@ -23,7 +25,10 @@ class NotesApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.dark),
-      home: const NotesView(),
+      home: BlocProvider(
+        create: (context) => NotesCubit()..fetchAllNotes(),
+        child: const NotesView(),
+      ),
     );
   }
 }

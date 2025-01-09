@@ -1,6 +1,8 @@
+import 'package:app_note/constans.dart';
 import 'package:app_note/models/note_model.dart';
 import 'package:app_note/view/edit_note_view.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 // ignore: must_be_immutable
 class NoteItem extends StatelessWidget {
@@ -20,7 +22,7 @@ class NoteItem extends StatelessWidget {
         padding: const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: Colors.orangeAccent.shade100,
+          color: Colors.orangeAccent,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -35,7 +37,9 @@ class NoteItem extends StatelessWidget {
                 style: const TextStyle(color: Colors.black54),
               ),
               trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    note.delete();
+                  },
                   icon: const Icon(
                     Icons.delete,
                     size: 33,

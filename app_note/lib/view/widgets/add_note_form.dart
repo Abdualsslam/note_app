@@ -1,9 +1,11 @@
 import 'package:app_note/cubits/add_notes/add_note_cubit.dart';
+import 'package:app_note/cubits/read_notes/notes_cubit.dart';
 import 'package:app_note/models/note_model.dart';
 import 'package:app_note/view/widgets/custom_button.dart';
 import 'package:app_note/view/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -56,20 +58,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     var noteModel = NoteModel(
                         title: title!,
                         subTitle: subTitle!,
-                        date: DateTime.now().year.toString(),
+                        date: DateFormat.yMMMd().format(DateTime.now()),
                         color: Colors.blue.g.toInt());
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                    // try {
-                    //   var box = Hive.box<NoteModel>(kNotesBox); // افتح الصندوق
-                    //   for (int i = 0; i < box.length; i++) {
-                    //     var note = box.getAt(i); // استعرض البيانات
-                    //     print(
-                    //         "Note $i: ${note?.title}, ${note?.subTitle}, ${note?.date}, ${note?.color}");
-                    //   }
-                    // } catch (e) {
-                    //   print("Error fetching notes: $e");
-                    // }
                     debugPrint("add ******");
+                    // BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                   }
