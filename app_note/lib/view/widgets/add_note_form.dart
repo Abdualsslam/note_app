@@ -62,7 +62,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         color: Colors.blue.g.toInt());
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                     debugPrint("add ******");
-                    // BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                    context.read<NotesCubit>().fetchAllNotes();
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                   }
