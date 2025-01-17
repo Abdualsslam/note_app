@@ -1,6 +1,7 @@
 import 'package:app_note/cubits/add_notes/add_note_cubit.dart';
 import 'package:app_note/cubits/read_notes/notes_cubit.dart';
 import 'package:app_note/models/note_model.dart';
+import 'package:app_note/view/widgets/color+_listview.dart';
 import 'package:app_note/view/widgets/custom_button.dart';
 import 'package:app_note/view/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ),
           CustomTextField(
             hint: 'Title',
-            onSave: (p0) {
+            onChange: (p0) {
               title = p0;
             },
           ),
@@ -42,10 +43,14 @@ class _AddNoteFormState extends State<AddNoteForm> {
           CustomTextField(
             hint: 'Content',
             maxLine: 5,
-            onSave: (p0) => subTitle = p0,
+            onChange: (p0) => subTitle = p0,
           ),
           const SizedBox(
-            height: 33,
+            height: 10,
+          ),
+          const ColorListView(),
+          const SizedBox(
+            height: 10,
           ),
           // Spacer(),
           BlocBuilder<AddNoteCubit, AddNoteState>(
@@ -61,7 +66,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         date: DateFormat.yMMMd().format(DateTime.now()),
                         color: Colors.blue.g.toInt());
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                    debugPrint("add ******");
+
                     context.read<NotesCubit>().fetchAllNotes();
                   } else {
                     autovalidateMode = AutovalidateMode.always;
@@ -70,9 +75,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
               );
             },
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
         ],
       ),
     );
